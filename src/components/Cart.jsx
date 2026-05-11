@@ -1,14 +1,17 @@
-import React from 'react'
+function Cart({ cart }) {
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
 
-const Cart = () => {
   return (
     <div>
-      <h2>Shopping Cart</h2>
+      <h2>Shopping Cart ({cart.length})</h2>
       <ul>
-        {/* TODO: Include items here in li tags with text 'ITEM.NAME is in your cart.' */}
+        {cart.map((item, index) => (
+          <li key={index}>{item.name} is in your cart</li>
+        ))}
       </ul>
+      {cart.length > 0 && <p>Total: ${total.toFixed(2)}</p>}
     </div>
-  )
+  );
 }
 
-export default Cart
+export default Cart;
